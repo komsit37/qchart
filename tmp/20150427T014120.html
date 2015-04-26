@@ -1,0 +1,43 @@
+<link href="../lib/css/nv.d3.css" rel="stylesheet" type="text/css">
+<script src="../lib/js/d3.js" charset="utf-8"></script>
+<script src="../lib/js/nv.d3.js"></script>
+    <style>
+        html, body, #chart, svg {
+            margin: 0px;
+            padding: 0px;
+            height: 100%;
+            width: 100%;
+            box-sizing: border-box;
+        }
+    </style>
+<div id='chart'></div>
+
+<script>
+  var data = 
+  [{"a":63,"b":0.7959531,"c":543,"d":0.02062569,"f":43},
+ {"a":74,"b":0.3667275,"c":488,"d":0.0481821,"f":49},
+ {"a":30,"b":0.5165234,"c":768,"d":0.02065625,"f":76},
+ {"a":14,"b":0.06541696,"c":819,"d":0.05229178,"f":81},
+ {"a":37,"b":0.597383,"c":29,"d":0.03338806,"f":75},
+ {"a":0,"b":0.6369711,"c":793,"d":0.0414621,"f":89},
+ {"a":62,"b":0.2180873,"c":111,"d":0.09725813,"f":75},
+ {"a":45,"b":0.5075745,"c":841,"d":0.05422726,"f":6},
+ {"a":2,"b":0.4176994,"c":0,"d":0.06116582,"f":73},
+ {"a":99,"b":0.01920741,"c":902,"d":0.03414991,"f":87}]
+  ;
+
+    // create the chart
+    var chart;
+    nv.addGraph(function() {
+        chart = nv.models.parallelCoordinates()
+            .dimensionNames(Object.keys(data[0]));
+
+        d3.select('#chart')
+            .append('svg')
+            .datum(data)
+            .call(chart);
+
+        nv.utils.windowResize(chart.update);
+        return chart;
+    });
+</script>

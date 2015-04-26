@@ -1,0 +1,49 @@
+<link href="../lib/css/nv.d3.css" rel="stylesheet" type="text/css">
+<script src="../lib/js/d3.js" charset="utf-8"></script>
+<script src="../lib/js/nv.d3.js"></script>
+<script src="../lib/q.js"></script>
+
+<div id='chart'></div>
+
+<script>
+  var data = 
+  [{"key":"price","values":[{"x":"08:00","y":15},
+ {"x":"08:01","y":84},
+ {"x":"08:02","y":82},
+ {"x":"08:03","y":90},
+ {"x":"08:04","y":66},
+ {"x":"08:05","y":2},
+ {"x":"08:06","y":96},
+ {"x":"08:07","y":93},
+ {"x":"08:08","y":5},
+ {"x":"08:09","y":58}]},
+ {"key":"r","values":[{"x":"08:00","y":0.9796094},
+ {"x":"08:01","y":0.3077491},
+ {"x":"08:02","y":0.3652273},
+ {"x":"08:03","y":0.9591177},
+ {"x":"08:04","y":0.4121866},
+ {"x":"08:05","y":0.633041},
+ {"x":"08:06","y":0.5752693},
+ {"x":"08:07","y":0.009011743},
+ {"x":"08:08","y":0.1448057},
+ {"x":"08:09","y":0.7706132}]}]
+  ;
+
+  var xFormat = nvXformat(data);
+  data = fixDate(data);
+
+    // create the chart
+  var chart;
+  nv.addGraph(function() {
+    chart = nv.models.lineChart()
+      .duration(300);
+
+    d3.select('#chart')
+      .append('svg')
+      .datum(data)
+      .call(chart);
+
+      nv.utils.windowResize(chart.update);
+      return chart;
+  });
+</script>

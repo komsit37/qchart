@@ -1,0 +1,34 @@
+<link href="../lib/css/nv.d3.css" rel="stylesheet" type="text/css">
+<script src="../lib/js/d3.js" charset="utf-8"></script>
+<script src="../lib/js/nv.d3.js"></script>
+    <style>
+        html, body, #chart, svg {
+            margin: 0px;
+            padding: 0px;
+            height: 100%;
+            width: 100%;
+            box-sizing: border-box;
+        }
+    </style>
+<div id='chart'></div>
+
+<script>
+  var data = 
+  {{data}}
+  ;
+
+    // create the chart
+    var chart;
+    nv.addGraph(function() {
+        chart = nv.models.parallelCoordinates()
+            .dimensionNames(Object.keys(data[0]));
+
+        d3.select('#chart')
+            .append('svg')
+            .datum(data)
+            .call(chart);
+
+        nv.utils.windowResize(chart.update);
+        return chart;
+    });
+</script>
