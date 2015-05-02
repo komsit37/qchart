@@ -21,8 +21,9 @@ plot:{[template; fn; data]
 points: plot[`nvscatter; .nv.t1];
 line: plot[`nvline; .nv.t1];
 bar: plot[`nvbar; .nv.t1];
-parallel: plot[`nvpar; .nv.t3];
+parallel: plot[`nvpar; .j.j];
 
+/
 //test 
 t1: ([]time: 2015.04.01 + til 10; price: 10?100; r: 10?1.0)
 t1: ([]time: 08:00 + til 10; price: 10?100; r: 10?1.0)
