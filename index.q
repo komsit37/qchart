@@ -1,4 +1,5 @@
-.chart.libpath: "/" sv (getenv `QHOME;"ext";"chart");
+//.chart.libpath: "/" sv (getenv `QHOME;"ext";"chart");
+.chart.libpath: first system"pwd";
 .chart.template: {hsym `$"/" sv (.chart.libpath;"template";string ` sv (x;`html))};
 .chart.tempfile: {hsym `$"/" sv (.chart.libpath;"tmp";string ` sv (`$-3_(string .z.Z) except ".:";`html))};
 .chart.launch: (("m";"w")!("open ";"start "))[first string .z.o];
