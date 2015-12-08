@@ -23,6 +23,7 @@ plot:{[template; fn; data]
 points: plot[`nvscatter; .nv.t1];
 line: plot[`nvline; .nv.t1];
 bar: plot[`nvbar; .nv.t1];
+stackedbar: plot[`nvstackedbar; .nv.t2];
 parallel: plot[`nvpar; .j.j];
 
 /
