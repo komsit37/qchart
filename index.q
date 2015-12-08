@@ -1,7 +1,8 @@
-//.chart.libpath: "/" sv (getenv `QHOME;"ext";"chart");
+//.chart.libpath: "/" sv (getenv `QHOME;"lib";"chart");
 .chart.libpath: first system"pwd";
 .chart.template: {hsym `$"/" sv (.chart.libpath;"template";string ` sv (x;`html))};
 .chart.tempfile: {hsym `$"/" sv (.chart.libpath;"tmp";string ` sv (`$-3_(string .z.Z) except ".:";`html))};
+system "rm -rf ", .chart.libpath, "/tmp";	//clear temp file
 .chart.launch: (("m";"w")!("open ";"start "))[first string .z.o];
 
 .j.p: {`$enlist each "\n" vs ssr[;;{"\n",x}] over (except[x;"\""];"[[]";"[]]")};
