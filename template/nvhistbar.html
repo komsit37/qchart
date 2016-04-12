@@ -1,0 +1,33 @@
+<link href="../lib/css/nv.d3.css" rel="stylesheet" type="text/css">
+<script src="../lib/js/d3.js" charset="utf-8"></script>
+<script src="../lib/js/nv.d3.js"></script>
+<script src="../lib/q.js"></script>
+
+<div id='chart'>
+  <svg></svg>
+</div>
+
+<script>
+  var data = 
+  {{data}}
+  ;
+
+  var xFormat = nvXformat(data);
+  data = fixDate(data);
+
+    // create the chart
+  var chart;
+  nv.addGraph(function() {
+    chart = nv.models.historicalBarChart()
+      .duration(300);
+
+    chart.xAxis.tickFormat(xFormat);
+
+    d3.select('#chart svg')
+      .datum(data)
+      .call(chart);
+
+      nv.utils.windowResize(chart.update);
+      return chart;
+  });
+</script>

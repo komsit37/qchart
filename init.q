@@ -6,7 +6,6 @@ system "rm -rf ", .qchart.libpath, "/output";	//clear previous output file
 .qchart.render: {[template; data] .qchart.render_json[template; .j.j data]}
 .qchart.render_json: {[template; json] outfile: .qchart.generate_tempfile[]; (hsym outfile) 0: {ssr[y; "{{data}}"; x]}[json] each .qchart.read_template[template]; outfile}
 
-
 .qchart.launch_command: (("m";"l"; "w")!("open "; "open"; "start "))[first string .z.o]
 .qchart.launch: {system cmd: (.qchart.launch_command, string x); cmd};
 
@@ -15,6 +14,7 @@ system "rm -rf ", .qchart.libpath, "/output";	//clear previous output file
 
 .nv.t1: {x: 0!x; {`key`values!(y;`x`y xcol (x,'y)#z)}[;;x]/:[c[0];1_c:cols x]};
 .nv.t2: {{`key`values!(y;?[x; enlist(=;`sym;enlist y);0b;(`x`y!2#(cols x)except `sym)])}[x] each exec distinct sym from x};
+.nv.byKey: {[t; k] {(`key`values)!(y;?[x; enlist(=;z;enlist y);0b;(`x`y!2#(cols x)except z)])}[t;;k] each distinct (0!t) k};
 
 //.nv.t3: {.j.j enlist`key`values!((cols x)1;`x`y xcol 0!x)}
 //just remove sym columns since it does not plot properly in parallel graph
@@ -25,8 +25,17 @@ system "rm -rf ", .qchart.libpath, "/output";	//clear previous output file
 
 //public functions
 qchart.points: {.qchart.plot[`nvscatter] .nv.t1 x};
+
 qchart.line: {.qchart.plot[`nvline] .nv.t1 x};
 qchart.lineSym: {.qchart.plot[`nvline] .nv.t2 x};
+qchart.lineKey: {.qchart.plot[`nvline] .nv.byKey[x; y]};
+
 qchart.bar: {.qchart.plot[`nvbar] .nv.t1 x};
+qchart.hbar: {.qchart.plot[`nvhbar] .nv.t1 x};
+qchart.histbar: {.qchart.plot[`nvhistbar] .nv.t1 x};
+
 qchart.stackedbar: {.qchart.plot[`nvstackedbar] .nv.t2 x};
-qchart.parallel: {.qchart.plot[`nvpar; x]};
+qchart.stackedbarKey: {.qchart.plot[`nvstackedbar] .nv.byKey[x; y]};
+
+qchart.parallel: {.qchart.plot[`nvpar] x};
+qchart.pie: {.qchart.plot[`nvpie] `x`y xcol 0!x};
