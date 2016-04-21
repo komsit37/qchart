@@ -17,7 +17,7 @@ git clone https://github.com/komsit37/qchart.git
 ```
 
 #Usage
-All plot functions are available under `qchart` object (note there is no namespace `.`, `.qchart` is used for internal while `qchart` is public)
+All plot functions are available under `qchart` dict (note there is no namespace `.`, `.qchart` is used for internal while `qchart` is public)
 check example.q
 ```q
 \l lib/qchart/qchart.q
